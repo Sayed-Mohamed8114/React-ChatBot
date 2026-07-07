@@ -19,3 +19,6 @@ A modern AI chat application inspired by Google's Gemini, built with **React** a
 * Google Gemini API
 * CSS / Tailwind CSS 
 * Vite 
+
+## Here is an over view about the home page
+<img src="./main/public/home.png" />
