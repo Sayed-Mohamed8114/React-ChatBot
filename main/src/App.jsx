@@ -1,8 +1,10 @@
-function App() {
+import {AIResult} from "./utils/fetch";
 
+function App() {
   return (
-    <>
-    </>
+    <div>
+      {AIResult}
+    </div>
   )
 }
 
