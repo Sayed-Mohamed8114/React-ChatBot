@@ -1,4 +1,4 @@
-# Gemini Clone using React and Gemini API
+# React chatbot using React and Gemini API
 
 A modern AI chat application inspired by Google's Gemini, built with **React** and powered by the **Google Gemini API**. The project provides a clean, responsive, and interactive interface that allows users to communicate with an AI assistant in real time.
 
