@@ -1,4 +1,4 @@
-# (BOo) chatbot using React and Gemini API
+# (Rou) chatbot using React and Gemini API
 
 A modern AI chat application inspired by Google's Gemini, built with **React** and powered by the **Google Gemini API**. The project provides a clean, responsive, and interactive interface that allows users to communicate with an AI assistant in real time.
 
@@ -22,3 +22,6 @@ A modern AI chat application inspired by Google's Gemini, built with **React** a
 
 ## Here is an over view about the home page
 <img src="./main/public/home.png" />
+
+# you can see Live Demo of it from here
+<a href="https://rou-steel.vercel.app/" target="_blank">Visit Me</a>
