@@ -10,8 +10,10 @@ export default function ChatPage() {
   const [messages, setMessage] = useState([]);
   const handleSubmit = async () => {
     if (!content.trim()) return;
+
     const prompt = content;
     setContent("");
+
     setMessage((prev) => [
       ...prev,
       {
@@ -24,35 +26,57 @@ export default function ChatPage() {
         streaming: true,
       },
     ]);
+
     try {
-      const result = await AIResult(prompt);
+      const history = messages
+        .filter((msg) => msg.text) //we use filter to filter out messages and the map to make the text in an array that we called it parts and every time it will return the parts as a key and value to make it easy for model to memorize and also we will switch from "assistant" to "model" to make the model able to understand it
+        .map((msg) => ({
+          role: msg.role === "assistant" ? "model" : "user",
+          parts: [{ text: msg.text }],
+        }));
+
+      history.push({
+        role: "user",
+        parts: [{ text: prompt }],
+      });
+
+      const result = await AIResult(history);
+
       for await (const chunk of result) {
         setMessage((prev) => {
           const updated = [...prev];
+
           updated[updated.length - 1] = {
-            ...updated[updated.lengt - 1],
+            ...updated[updated.length - 1],
             text: updated[updated.length - 1].text + (chunk.text || ""),
           };
+
           return updated;
         });
       }
+
       setMessage((prev) => {
         const updated = [...prev];
+
         updated[updated.length - 1] = {
           ...updated[updated.length - 1],
           streaming: false,
         };
+
         return updated;
       });
     } catch (error) {
-      console.error=error;
+      console.error(error);
+
       setMessage((prev) => {
         const updated = [...prev];
+
         updated[updated.length - 1] = {
           role: "assistant",
           text: "Something went wrong. Please try again.",
           streaming: false,
         };
+
         return updated;
       });
     }
